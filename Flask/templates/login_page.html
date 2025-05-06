@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* display: flex;
+           
+            align-items: center; */
+            min-height: 100vh;
+            background: linear-gradient(135deg,  rgb(81, 151, 81), rgba(159, 245, 148, 0.8));
+            
+        }
+
+        .container {
+            padding-left: 50px;
+            flex-direction: row;
+            justify-content: space-around; 
+            display: flex;
+            align-items: center;
+            gap: 70px;
+            text-align: center;
+        }
+
+        .login-container {
+            width: 100%;
+            min-width: 400px;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin-left: auto;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 30px;
+            color: #241b1b;
+        }
+
+        .flash-message {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .flash-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .flash-message.danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #0e0b0b;
+            border-radius: 6px;
+            margin-top: 6px;
+            background: transparent;
+            font-size: 18px;
+            color: #131111;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .input-box input:focus {
+            border-color: #20de29;
+            background: rgba(150, 250, 155, 0.1);
+            box-shadow: 0 0 5px rgba(32, 222, 41, 0.5);
+        }
+
+        .input-box label {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+            font-size: 18px;
+            transition: all 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .input-box input:focus ~ label,
+        .input-box input:valid ~ label {
+            top: 20px;
+            left: 14px;
+            font-size: 14px;
+            color: #20de29;
+            font-weight: bold;
+        }
+
+        .remember-forget {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            color: #100a0a;
+        }
+
+        .remember-forget a {
+            color: #130f0f;
+            text-decoration: none;
+        }
+
+        .remember-forget a:hover {
+            text-decoration: underline;
+            color: blue;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background:  rgb(81, 151, 81);
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #159e20;
+        }
+
+        .register-link {
+            margin-top: 16px;
+            font-size: 18px;
+            color: #0f0b0b;
+            text-align: center;
+        }
+
+        .register-link a {
+            color: #050404;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+            color: blue;
+        }
+
+        .activity-image {
+            max-width: 500px;
+            height: auto;
+            border-radius: 50px;
+            margin-right: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .activity-image {
+                display: none;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            body {
+                padding-left: 0;
+                justify-content: center;
+            }
+
+            .login-container {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="{{url_for('static', filename='images/WhatsApp Image 2025-02-16 at 20.58.53_22e317ee.jpg')}}" height="60px" width="60px" style="margin: 10px;">
+    <div class="container">
+        <div class="login-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <h1>Log in</h1>
+
+            <form action="{{url_for('loginPage')}}" method="POST">
+                <div class="input-box">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-box">
+                    <select name="role" id="role" required class="form-control">
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div> 
+                <div class="remember-forget">
+                    <label><input type="checkbox"> Remember Me</label>
+                    <a href="{{url_for('forgot_password')}}">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="{{url_for('signUp')}}">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+
+        <img class="activity-image" src="https://www.mytask.co/NewFeaturesImg/e22.png" alt="Activity Image">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
