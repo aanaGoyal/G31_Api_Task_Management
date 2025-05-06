@@ -1,8 +1,0 @@
-# Virtual environment folders
-myenv/
-.myenv/
-env/
-venv/
-
-# VS Code settings folder
-.vscode/
