@@ -1,0 +1,102 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="text-center mb-4" id="hero">
+    <h1 class="fw-bold">How can we help?</h1>
+    <input type="text" id="search-bar" class="form-control w-50 mx-auto my-3" placeholder="Search...">
+    
+
+<!-- Help Sections as Bootstrap Cards --> 
+ <section id="help-sections" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for section in sections %}
+    <div class="col">
+        <a href="{{ url_for(section.route) }}" class="text-decoration-none text-dark">
+            <div class="card shadow-sm p-3 mb-4 bg-white rounded" data-delay="{{ loop.index0 * 200 }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ section.title }}</h5>
+                    <p class="card-text">{{ section.description }}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+ </section> 
+
+
+
+<section id="contact">
+    <h1>Contact Us !</h1>
+    <p class="text-align-center">Got a question? You might find the answer in our Help page . </p>
+    <p>Otherwise , see all the ways you can speak to our teams .</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-contact">GET IN TOUCH</a>
+    <!-- <button class="btn btn-contact">Get in touch</button>  -->
+
+</section> 
+
+
+<!-- here -->
+<section id="inspiration">
+    <h1 style="color:rgb(113, 174, 137);"><strong>Get Inspired!</strong></h1>
+    <p style="color: rgb(110, 173, 139);">Discover ideas and tips to boost your productivity.</p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ url_for('static', filename='images/focus.png') }}" alt="Stay Focused" class="card-img">
+                        <h5><strong>Stay Focused</strong></h5>
+                        <p>Tips to improve concentration.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h5>Keep Pushing Forward!</h5>
+                        <p>Discover focus strategies that work best for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ url_for('static', filename='images/produ.png') }}" alt="Boost Productivity" class="card-img">
+                        <h5><strong>Boost Productivity</strong></h5>
+                        <p>Small changes, big impact.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h5>You Can Achieve More!</h5>
+                        <p>Learn hacks to get things done effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{{ url_for('static', filename='images/workfaster.png') }}" alt="Work Smarter" class="card-img">
+                        <h5><strong>Work Smarter</strong></h5>
+                        <p>Time management hacks.</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h5>Efficiency is Key!</h5>
+                        <p>Master techniques for smarter workflows.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button class="inspiration-btn" onclick="window.location.href='/inspiration_hub'">View Our Inspiration Hub</button>
+</section>
+
+ 
+    
+
+{% endblock %}
