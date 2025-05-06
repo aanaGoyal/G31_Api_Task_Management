@@ -103,7 +103,7 @@ with app.app_context():
         admin_user = User(
             username='Admin',
             email=admin_email,
-            phone='0000000000',
+            phone='1234567890',
             address='Admin Office',
             role='admin',
             gender='Other'
